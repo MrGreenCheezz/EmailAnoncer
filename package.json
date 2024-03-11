@@ -1,0 +1,16 @@
+{
+  "name": "imaptest",
+  "version": "1.0.0",
+  "description": "email checker",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "greencheezz",
+  "license": "ISC",
+  "dependencies": {
+    "iconv-lite": "^0.6.3",
+    "imap": "^0.8.19",
+    "mailparser": "^3.6.9"
+  }
+}
