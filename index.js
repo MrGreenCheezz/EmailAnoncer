@@ -28,7 +28,6 @@ function processMail(msg, seqno) {
     });
     stream.once('end', function () {
       console.log(prefix + 'Parsed header: %s', inspect(Imap.parseHeader(buffer)));
-      // Check if the subject matches the pattern
       const subject = Imap.parseHeader(buffer).subject[0];
       const pattern = /Вашей группе предложена заявка № IM-CL-(.*)/;
       const match = subject.match(pattern);
@@ -36,7 +35,6 @@ function processMail(msg, seqno) {
       if (match) {
         const nextString = match[1];
         console.log('Next string after matching fragment:', nextString);
-        // Write text from inside the mail to console
         simpleParser(buffer, (err, mail) => {
           const descriptionPattern = /Краткое описание:(.*)/;
           const descriptionMatch = mail.html.match(descriptionPattern);
@@ -62,7 +60,7 @@ function sendTelegramNotification(text) {
   const token = 'token';
   const chatId = '-chatId';
   const currentTime = new Date();
-  const message = `Уведомление с IM: ${currentTime.toLocaleString()}`; // Ваше сообщение
+  const message = `Уведомление с IM: ${currentTime.toLocaleString()}`; 
 
   fetch(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${message + text}`)
   .then(response => {
